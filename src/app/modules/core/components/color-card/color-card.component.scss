@@ -1,0 +1,49 @@
+.color-container{
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.main-color{
+    display: inline-flex;
+    min-height: inherit;
+    width: 100%;
+    height: 100%;
+}
+
+.polaroid {
+    margin:auto;
+    background-color: white;
+    width: 30%;
+    height: 40%;
+}
+
+.sec-color {
+    margin: 5px;
+    height: 66.67%;
+}
+
+.pantone {
+    padding: 5px;
+    font-family: Verdana, Geneva, sans-serif; 
+    font-size: 2rem; 
+    font-style: normal; 
+    font-variant: small-caps; 
+    font-weight: 700;
+}
+
+.reg {
+    font-size: 0.5rem;
+    position: relative;
+    top: -2.5em;
+}
+
+.details {
+    text-align: right;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: normal; 
+    font-variant: small-caps; 
+    width: 100%;
+    font-size: larger;
+    font-weight: 300;
+}

@@ -1,1 +1,11 @@
-<p>color-card works!</p>
+<div class="color-container">
+    <div class="main-color" style="background-color: {{color.color}};">
+        <div class="polaroid"  style="color: {{color.color}};">
+            <div class="sec-color" style="background-color: {{color.color}};"></div>
+            <div class="pantone">PANTONE<span class="reg">&reg;</span></div>
+            <div class="details">{{color.pantone_value}}</div>
+            <div class="details">{{color.name}}</div>
+            <div class="details">{{color.color}}</div>
+        </div>
+    </div>
+</div>

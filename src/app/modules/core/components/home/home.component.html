@@ -1,3 +1,11 @@
 <p>home works!</p>
-<!-- TODO Accordion dei vari colori con singolo colore in altro componente e edit in place che aggiorna la data e l'autore di modifica-->
-<p>{{colorList|json}}</p>
+<carousel
+[height]="1000"
+[cellsToShow]="3"
+[borderRadius]="10"
+[lightDOM]="true"
+[loop]="true">
+    <app-color-card *ngFor="let colorCell of colorList" [color]=colorCell class="carousel-cell">
+    </app-color-card>
+</carousel>
+<div id="disclaimer">Tutti i marchi usati appartengono ai relativi proprietari e vengono qui usati solo a scopo educativo.</div>

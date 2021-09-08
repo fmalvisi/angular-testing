@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { ColorCardComponent } from './components/color-card/color-card.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 
 
@@ -11,7 +12,8 @@ import { ColorCardComponent } from './components/color-card/color-card.component
     ColorCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    IvyCarouselModule
   ]
 })
 export class CoreModule { }
