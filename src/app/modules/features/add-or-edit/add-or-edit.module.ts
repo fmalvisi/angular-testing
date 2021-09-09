@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddOrEditComponent } from './components/add-or-edit.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -9,7 +10,9 @@ import { AddOrEditComponent } from './components/add-or-edit.component';
     AddOrEditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    BrowserModule,
+    CommonModule,
   ],
   exports: [
     AddOrEditComponent

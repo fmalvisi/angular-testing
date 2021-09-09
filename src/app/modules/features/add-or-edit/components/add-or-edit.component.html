@@ -1,1 +1,36 @@
-<p>add-or-edit works!</p>
+<div class="form-container"  formGroupName="colorForm">
+    <div *ngIf="true; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <h1>Modifica questo colore!</h1>
+    </ng-template>
+    <ng-template #elseBlock>
+        <h1>Aggiungi un colore!</h1>
+    </ng-template>
+
+    <label for="id">Id: </label>
+    <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" disabled class="disabled">
+
+    <label for="name">Nome: </label>
+    <input id="name" type="text" formControlName="name" [value]="selectedColor?.name">
+
+    <label for="year">Anno: </label>
+    <input id="year" type="text" formControlName="year" [value]="selectedColor?.year">
+
+    <label for="color">Colore esadecimale: </label>
+    <input id="color" type="text" formControlName="color" [value]="selectedColor?.color">
+
+    <label for="pantone_value">Nomenclatura Pantone&reg;: </label>
+    <input id="pantone_value" type="text" formControlName="pantone_value" [value]="selectedColor?.pantone_value">
+
+    <label for="loaded">Ultimo Aggiornamento: </label>
+    <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" disabled class="disabled">
+
+    <label for="edited_by">Modificato da: </label>
+    <input id="edited_by" type="text" formControlName="edited_by" disabled class="disabled">
+
+    <label for="check">Sei Sicuro?</label>
+    <input type="checkbox" id="check" formControlName="check" [defaultChecked]=false>
+
+    <button (click)="submit()">Invia!</button>
+
+</div>
