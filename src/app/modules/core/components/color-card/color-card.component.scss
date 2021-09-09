@@ -82,10 +82,18 @@
 
 .polaroid-back button{
     margin: auto;
-    background-color: lightgray;
-    font-weight: 600;
+    background-color: silver;
     border-radius: 5px;
-    border-color: lightgray;
+    background-color: salmon;
+    border: 1px solid salmon;
     padding: 5px;
     width: 50%;
+    font-weight: 500;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.polaroid-back button:hover {
+    color: white;
+    background-color: sienna;
+    cursor: pointer;
 }

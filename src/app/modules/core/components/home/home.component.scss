@@ -10,3 +10,21 @@
     margin: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+.action {
+    position:absolute;
+    right: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: right;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: salmon;
+    border: 1px solid salmon;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.action:hover {
+    color: white;
+    background-color: sienna;
+    cursor: pointer;
+}

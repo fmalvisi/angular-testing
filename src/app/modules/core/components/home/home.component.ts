@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Color } from 'src/app/modules/shared/model/color';
 import { ColorsService } from '../../services/colors.service';
 
@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit {
   colorList: Color[] = [];
 
   constructor(private colorsService: ColorsService,
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,
+    protected router: Router) {
     this.route.data.subscribe((data) => {
       console.log("activated route data", data);
       this.colorList = data.colorList;
@@ -22,4 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addColor() {
+    this.router.navigate(["/color", '']);
+  }
 }
