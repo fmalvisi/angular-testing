@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Color } from 'src/app/modules/shared/model/color';
 import { ColorsService } from '../../services/colors.service';

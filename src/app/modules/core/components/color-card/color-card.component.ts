@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Color } from 'src/app/modules/shared/model/color';
 
 @Component({
@@ -9,7 +10,11 @@ import { Color } from 'src/app/modules/shared/model/color';
 export class ColorCardComponent implements OnDestroy {
   @Input() color!: Color;
 
-  constructor() { }
+  constructor(protected router: Router) { }
+
+  editColor() {
+    this.router.navigate(['/color', this.color.id])
+  }
 
   ngOnDestroy() {}
 
