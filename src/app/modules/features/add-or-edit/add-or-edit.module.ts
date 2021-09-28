@@ -11,8 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    CommonModule,
+    BrowserModule
   ],
   exports: [
     AddOrEditComponent

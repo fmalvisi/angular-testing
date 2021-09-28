@@ -39,11 +39,11 @@ export class ColorsService {
     const _promise = new Promise<Color>((resolve, reject) => {
       this.http.get<Color>(this.baseURL+"/"+id).toPromise().then(
         res => {
-          console.log("getColorList response: ", res);
+          console.log("getColor response: ", res);
           resolve(res);
         },
         error => {
-          console.log('getColorList reject', error);
+          console.log('getColor reject', error);
           reject(error);
         }
       );
