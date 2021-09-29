@@ -1,5 +1,5 @@
 <div class="form-container"  formGroupName="colorForm">
-    <div *ngIf="true; then thenBlock else elseBlock"></div>
+    <div *ngIf="!!currentId; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
         <h1>Modifica questo colore!</h1>
     </ng-template>
@@ -8,7 +8,7 @@
     </ng-template>
 
     <label for="id">Id: </label>
-    <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" disabled class="disabled">
+    <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" class="disabled">
 
     <label for="name">Nome: </label>
     <input id="name" type="text" formControlName="name" [value]="selectedColor?.name">
@@ -23,10 +23,10 @@
     <input id="pantone_value" type="text" formControlName="pantone_value" [value]="selectedColor?.pantone_value">
 
     <label for="loaded">Ultimo Aggiornamento: </label>
-    <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" disabled class="disabled">
+    <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" class="disabled">
 
     <label for="edited_by">Modificato da: </label>
-    <input id="edited_by" type="text" formControlName="edited_by" disabled class="disabled">
+    <input id="edited_by" type="text" formControlName="edited_by" class="disabled">
 
     <label for="check">Sei Sicuro?</label>
     <input type="checkbox" id="check" formControlName="check" [defaultChecked]=false>
