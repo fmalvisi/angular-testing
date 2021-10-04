@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ColorsService } from 'src/app/modules/core/services/colors.service';
 import { Color } from 'src/app/modules/shared/model/color';
@@ -12,16 +12,7 @@ import { Color } from 'src/app/modules/shared/model/color';
 export class AddOrEditComponent implements OnInit {
   currentId: string = '';
   selectedColor: Color | undefined;
-  colorForm = this.fb.group({
-    id: ['', Validators.required, Validators.min(1)],
-    name: ['', Validators.required, Validators.minLength(1)],
-    year: [''],
-    color: ['', Validators.required, Validators.pattern('')],
-    pantone_value: ['', Validators.required, Validators.pattern('')],
-    loaded: [''],
-    edited_by: [''],
-    check: [false, Validators.requiredTrue]
-  })
+  colorForm : FormGroup = this.fb.group({});
 
   constructor(private route: ActivatedRoute,
     private colorService: ColorsService,
@@ -41,6 +32,14 @@ export class AddOrEditComponent implements OnInit {
         //new color
         this.selectedColor = this.generateNewColorStub(); //Collisions
       }
+      this.colorForm.addControl("id", this.fb.control(this.selectedColor?.id, [Validators.required, Validators.min(1)]));
+      this.colorForm.addControl("name", this.fb.control(this.selectedColor?.name, [Validators.required, Validators.minLength(1)]));
+      this.colorForm.addControl("year", this.fb.control(this.selectedColor?.year, [Validators.min(1970)]));
+      this.colorForm.addControl("color", this.fb.control(this.selectedColor?.color, [Validators.required, Validators.pattern('')]));
+      this.colorForm.addControl("pantone_value", this.fb.control(this.selectedColor?.pantone_value, [Validators.required, Validators.pattern('')]));
+      this.colorForm.addControl("loaded", this.fb.control(this.selectedColor?.loaded, []));
+      this.colorForm.addControl("edited_by", this.fb.control(this.selectedColor?.edited_by, []));
+      this.colorForm.addControl("check", this.fb.control(false, [Validators.requiredTrue]));
     })
   }
 
@@ -57,35 +56,8 @@ export class AddOrEditComponent implements OnInit {
     }
   }
 
-  get id() {
-    return this.colorForm.get('id');
-  }
-
-  get name() {
-    return this.colorForm.get('name');
-  }
-
-  get year() {
-    return this.colorForm.get('year');
-  }
-
-  get color() {
-    return this.colorForm.get('color');
-  }
-
-  get pantone_value() {
-    return this.colorForm.get('pantone_value');
-  }
-
-  get loaded() {
-    return this.colorForm.get('loaded');
-  }
-
-  get edited_by() {
-    return this.colorForm.get('edited_by');
-  }
-
   submit() {
+    console.log("submit called");
     this.colorService.editOrAddColor(this.selectedColor!);
   }
 
