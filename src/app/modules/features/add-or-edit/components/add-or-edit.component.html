@@ -9,29 +9,35 @@
 
 
         <label for="id">Id: </label>
-        <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" class="disabled">
+        <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" class="disabled" [disabled]="true">
 
         <label for="name">Nome: </label>
         <input id="name" type="text" formControlName="name" [value]="selectedColor?.name">
+        <span *ngIf="colorForm.controls.id.invalid">Id non valido</span>
 
         <label for="year">Anno: </label>
         <input id="year" type="text" formControlName="year" [value]="selectedColor?.year">
+        <span *ngIf="colorForm.controls.year.invalid">Anno non valido</span>
 
         <label for="color">Colore esadecimale: </label>
         <input id="color" type="text" formControlName="color" [value]="selectedColor?.color">
+        <span *ngIf="colorForm.controls.color.invalid">Colore non valido, deve essere nel formato #XXXXXX</span>
 
         <label for="pantone_value">Nomenclatura Pantone&reg;: </label>
         <input id="pantone_value" type="text" formControlName="pantone_value" [value]="selectedColor?.pantone_value">
+        <span *ngIf="colorForm.controls.pantone_value.invalid">Nomenclatura Pantone non valida, deve essere nel formato XX-XXXX</span>
 
         <label for="loaded">Ultimo Aggiornamento: </label>
-        <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" class="disabled">
+        <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" class="disabled" [disabled]="true">
+        <span *ngIf="colorForm.controls.loaded.invalid">Id non valido</span>
 
         <label for="edited_by">Modificato da: </label>
-        <input id="edited_by" type="text" formControlName="edited_by" class="disabled">
+        <input id="edited_by" type="text" formControlName="edited_by" class="disabled" [disabled]="true">
+        <span *ngIf="colorForm.controls.edited_by.invalid">Id non valido</span>
 
         <label for="check">Sei Sicuro?</label>
         <input type="checkbox" id="check" formControlName="check" [defaultChecked]=false>
 
-        <button type="submit">Invia!</button>
+        <button type="submit" [disabled]="colorForm.invalid">Invia!</button>
 
 </div>

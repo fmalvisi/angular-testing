@@ -35,8 +35,8 @@ export class AddOrEditComponent implements OnInit {
       this.colorForm.addControl("id", this.fb.control(this.selectedColor?.id, [Validators.required, Validators.min(1)]));
       this.colorForm.addControl("name", this.fb.control(this.selectedColor?.name, [Validators.required, Validators.minLength(1)]));
       this.colorForm.addControl("year", this.fb.control(this.selectedColor?.year, [Validators.min(1970)]));
-      this.colorForm.addControl("color", this.fb.control(this.selectedColor?.color, [Validators.required, Validators.pattern('')]));
-      this.colorForm.addControl("pantone_value", this.fb.control(this.selectedColor?.pantone_value, [Validators.required, Validators.pattern('')]));
+      this.colorForm.addControl("color", this.fb.control(this.selectedColor?.color, [Validators.required, Validators.pattern("^#([a-fA-F0-9]{6})$")]));
+      this.colorForm.addControl("pantone_value", this.fb.control(this.selectedColor?.pantone_value, [Validators.required, Validators.pattern("^([0-9]{2}-[0-9]{4})$")]));
       this.colorForm.addControl("loaded", this.fb.control(this.selectedColor?.loaded, []));
       this.colorForm.addControl("edited_by", this.fb.control(this.selectedColor?.edited_by, []));
       this.colorForm.addControl("check", this.fb.control(false, [Validators.requiredTrue]));
