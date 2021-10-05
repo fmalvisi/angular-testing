@@ -9,7 +9,7 @@
 
     <div class="form__item">
         <label for="id" class="form__label">Id: </label>
-        <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" [disabled]="true" class="form__input form__input--small">
+        <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" class="form__input form__input--small">
     </div>
     <div class="form__item">
         <label for="name" class="form__label">Nome: </label>
@@ -33,12 +33,12 @@
     </div>
     <div class="form__item">
         <label for="loaded" class="form__label">Ultimo Aggiornamento: </label>
-        <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" [disabled]="true" class="form__input">
+        <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" class="form__input">
         <span class="form__error" *ngIf="colorForm.controls.loaded.invalid">Id non valido</span>
     </div>
     <div class="form__item">
         <label for="edited_by" class="form__label">Modificato da: </label>
-        <input id="edited_by" type="text" formControlName="edited_by" [disabled]="true" class="form__input form__input--small">
+        <input id="edited_by" type="text" formControlName="edited_by" class="form__input form__input--small">
         <span class="form__error" *ngIf="colorForm.controls.edited_by.invalid">Id non valido</span>
     </div>
     <div class="form__item">

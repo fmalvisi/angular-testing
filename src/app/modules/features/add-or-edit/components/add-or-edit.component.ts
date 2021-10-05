@@ -48,13 +48,20 @@ export class AddOrEditComponent implements OnInit {
   }
 
   createForm() {
-    this.colorForm.addControl("id", this.fb.control('', [Validators.required, Validators.min(1)]));
-    this.colorForm.addControl("name", this.fb.control('', [Validators.required, Validators.minLength(1)]));
-    this.colorForm.addControl("year", this.fb.control('', [Validators.min(1970)]));
-    this.colorForm.addControl("color", this.fb.control('', [Validators.required, Validators.pattern("^#([a-fA-F0-9]{6})$")]));
-    this.colorForm.addControl("pantone_value", this.fb.control('', [Validators.required, Validators.pattern("^([0-9]{2}-[0-9]{4})$")]));
-    this.colorForm.addControl("loaded", this.fb.control('', []));
-    this.colorForm.addControl("edited_by", this.fb.control('', []));
+    this.colorForm.removeControl("id");
+    this.colorForm.removeControl("name");
+    this.colorForm.removeControl("year");
+    this.colorForm.removeControl("color");
+    this.colorForm.removeControl("pantone_value");
+    this.colorForm.removeControl("loaded");
+    this.colorForm.removeControl("edited_by");
+    this.colorForm.setControl("id", this.fb.control({value: '', disabled: true}, [Validators.required, Validators.min(1)]));
+    this.colorForm.setControl("name", this.fb.control('', [Validators.required, Validators.minLength(1)]));
+    this.colorForm.setControl("year", this.fb.control('', [Validators.min(1970)]));
+    this.colorForm.setControl("color", this.fb.control('', [Validators.required, Validators.pattern("^#([a-fA-F0-9]{6})$")]));
+    this.colorForm.setControl("pantone_value", this.fb.control('', [Validators.required, Validators.pattern("^([0-9]{2}-[0-9]{4})$")]));
+    this.colorForm.setControl("loaded", this.fb.control({value: '', disabled: true}, []));
+    this.colorForm.setControl("edited_by", this.fb.control({value: '', disabled: true}, []));
     this.colorForm.patchValue({
       id: this.selectedColor?.id,
       name: this.selectedColor?.name,
