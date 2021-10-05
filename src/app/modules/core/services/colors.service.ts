@@ -52,14 +52,26 @@ export class ColorsService {
   }
 
   editOrAddColor(editedColor: Color) {
+    console.log("arrivato colore", editedColor)
     if (!!editedColor && !!editedColor.id) {
-      for (let currentColor of this.fetchedColors) {
-        if (currentColor.id === editedColor.id) {
-          currentColor = editedColor //TODO TEST
+      console.log("colore definito");
+      let found = false;
+      this.fetchedColors.forEach((value, index) => {
+        console.log("cerco colore")
+        if (value.id === editedColor.id) {
+          console.log("colore trovato", value.id)
+          this.fetchedColors[index] = editedColor;
+          console.log("nuovo array colori", this.fetchedColors);
+          found = true;
           return;
         }
+      });
+      if (!found) {
+        console.log("colore nuovo");
+        this.fetchedColors.push(editedColor);
       }
-      this.fetchedColors.push(editedColor);
     }
+    
+    console.log("nuovo array colori", this.fetchedColors);
   }
 }

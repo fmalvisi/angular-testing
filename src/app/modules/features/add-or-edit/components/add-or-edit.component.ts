@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ColorsService } from 'src/app/modules/core/services/colors.service';
 import { Color } from 'src/app/modules/shared/model/color';
 
@@ -24,6 +24,7 @@ export class AddOrEditComponent implements OnInit {
   });
 
   constructor(private route: ActivatedRoute,
+    protected router: Router,
     private colorService: ColorsService,
     private fb: FormBuilder) { 
   }
@@ -33,7 +34,6 @@ export class AddOrEditComponent implements OnInit {
       this.currentId = paramMap.get('colorId') || '';
       if (this.currentId !== '') {
           this.colorService.getColor(+this.currentId).then((res: Color) => {
-            console.log("colore caricato", res);
             this.selectedColor = res;
             this.createForm();
           }).catch((error) => {
@@ -48,7 +48,6 @@ export class AddOrEditComponent implements OnInit {
   }
 
   createForm() {
-
     this.colorForm.patchValue({
       id: this.selectedColor?.id,
       name: this.selectedColor?.name,
@@ -57,6 +56,12 @@ export class AddOrEditComponent implements OnInit {
       pantone_value: this.selectedColor?.pantone_value,
       loaded: this.selectedColor?.loaded,
       edited_by: this.selectedColor?.edited_by
+    });
+    this.colorForm.valueChanges.subscribe(form => {
+      if (this.currentId !== '' && this.colorForm.dirty) {
+        this.selectedColor!.loaded = new Date().toISOString();
+        this.selectedColor!.edited_by = "You";
+      }
     });
   }
 
@@ -74,8 +79,13 @@ export class AddOrEditComponent implements OnInit {
   }
 
   submit() {
-    console.log("submit called");
+    console.log("submit called", this.selectedColor);
     this.colorService.editOrAddColor(this.selectedColor!);
+    this.goBack();
+  }
+
+  goBack() {
+    this.router.navigate(["/"]);
   }
 
 }

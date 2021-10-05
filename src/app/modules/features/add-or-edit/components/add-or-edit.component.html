@@ -1,4 +1,4 @@
-<div class="form-container"  [formGroup]="colorForm" (ngSubmit)="submit()">
+<form class="form-container"  [formGroup]="colorForm" (ngSubmit)="submit()">
     <div *ngIf="!!currentId; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
         <h1 class="form__title">Modifica questo colore!</h1>
@@ -34,12 +34,10 @@
     <div class="form__item">
         <label for="loaded" class="form__label">Ultimo Aggiornamento: </label>
         <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" class="form__input">
-        <span class="form__error" *ngIf="colorForm.controls.loaded.invalid">Id non valido</span>
     </div>
     <div class="form__item">
         <label for="edited_by" class="form__label">Modificato da: </label>
         <input id="edited_by" type="text" formControlName="edited_by" class="form__input form__input--small">
-        <span class="form__error" *ngIf="colorForm.controls.edited_by.invalid">Id non valido</span>
     </div>
     <div class="form__item">
         <label for="check" class="form__label">Sei Sicuro?</label>
@@ -49,4 +47,6 @@
         <button class="form__btn" type="submit" [disabled]="colorForm.invalid">Invia!</button>
     </div>
 
-</div>
+</form>
+
+<button (click)="goBack()">Torna alla Homepage!</button>
