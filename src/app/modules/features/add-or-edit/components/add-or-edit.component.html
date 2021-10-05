@@ -1,43 +1,52 @@
 <div class="form-container"  [formGroup]="colorForm" (ngSubmit)="submit()">
     <div *ngIf="!!currentId; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
-        <h1>Modifica questo colore!</h1>
+        <h1 class="form__title">Modifica questo colore!</h1>
     </ng-template>
     <ng-template #elseBlock>
-        <h1>Aggiungi un colore!</h1>
+        <h1 class="form__title">Aggiungi un colore!</h1>
     </ng-template>
 
-
-        <label for="id">Id: </label>
-        <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" class="disabled" [disabled]="true">
-
-        <label for="name">Nome: </label>
-        <input id="name" type="text" formControlName="name" [value]="selectedColor?.name">
-        <span *ngIf="colorForm.controls.id.invalid">Id non valido</span>
-
-        <label for="year">Anno: </label>
-        <input id="year" type="text" formControlName="year" [value]="selectedColor?.year">
-        <span *ngIf="colorForm.controls.year.invalid">Anno non valido</span>
-
-        <label for="color">Colore esadecimale: </label>
-        <input id="color" type="text" formControlName="color" [value]="selectedColor?.color">
-        <span *ngIf="colorForm.controls.color.invalid">Colore non valido, deve essere nel formato #XXXXXX</span>
-
-        <label for="pantone_value">Nomenclatura Pantone&reg;: </label>
-        <input id="pantone_value" type="text" formControlName="pantone_value" [value]="selectedColor?.pantone_value">
-        <span *ngIf="colorForm.controls.pantone_value.invalid">Nomenclatura Pantone non valida, deve essere nel formato XX-XXXX</span>
-
-        <label for="loaded">Ultimo Aggiornamento: </label>
-        <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" class="disabled" [disabled]="true">
-        <span *ngIf="colorForm.controls.loaded.invalid">Id non valido</span>
-
-        <label for="edited_by">Modificato da: </label>
-        <input id="edited_by" type="text" formControlName="edited_by" class="disabled" [disabled]="true">
-        <span *ngIf="colorForm.controls.edited_by.invalid">Id non valido</span>
-
-        <label for="check">Sei Sicuro?</label>
-        <input type="checkbox" id="check" formControlName="check" [defaultChecked]=false>
-
-        <button type="submit" [disabled]="colorForm.invalid">Invia!</button>
+    <div class="form__item">
+        <label for="id" class="form__label">Id: </label>
+        <input id="id" type="text" formControlName="id" [value]="selectedColor?.id" [disabled]="true" class="form__input form__input--small">
+    </div>
+    <div class="form__item">
+        <label for="name" class="form__label">Nome: </label>
+        <input id="name" type="text" formControlName="name" [value]="selectedColor?.name" class="form__input">
+        <span class="form__error" *ngIf="colorForm.controls.id.invalid">Id non valido</span>
+    </div>
+    <div class="form__item">
+        <label for="year" class="form__label">Anno: </label>
+        <input id="year" type="text" formControlName="year" [value]="selectedColor?.year" class="form__input form__input--small">
+        <span class="form__error" *ngIf="colorForm.controls.year.invalid">Anno non valido</span>
+    </div>
+    <div class="form__item">
+        <label for="color" class="form__label">Colore esadecimale: </label>
+        <input id="color" type="text" formControlName="color" [value]="selectedColor?.color" class="form__input form__input--small">
+        <span class="form__error" *ngIf="colorForm.controls.color.invalid">Colore non valido, deve essere nel formato #XXXXXX</span>
+    </div>
+    <div class="form__item">
+        <label for="pantone_value" class="form__label">Nomenclatura Pantone&reg;: </label>
+        <input id="pantone_value" type="text" formControlName="pantone_value" [value]="selectedColor?.pantone_value" class="form__input form__input--small">
+        <span class="form__error" *ngIf="colorForm.controls.pantone_value.invalid">Nomenclatura Pantone non valida, deve essere nel formato XX-XXXX</span>
+    </div>
+    <div class="form__item">
+        <label for="loaded" class="form__label">Ultimo Aggiornamento: </label>
+        <input id="loaded" type="text" formControlName="loaded" [value]="selectedColor?.loaded" [disabled]="true" class="form__input">
+        <span class="form__error" *ngIf="colorForm.controls.loaded.invalid">Id non valido</span>
+    </div>
+    <div class="form__item">
+        <label for="edited_by" class="form__label">Modificato da: </label>
+        <input id="edited_by" type="text" formControlName="edited_by" [disabled]="true" class="form__input form__input--small">
+        <span class="form__error" *ngIf="colorForm.controls.edited_by.invalid">Id non valido</span>
+    </div>
+    <div class="form__item">
+        <label for="check" class="form__label">Sei Sicuro?</label>
+        <input type="checkbox" id="check" formControlName="check" [defaultChecked]=false class="form__chk">
+    </div>
+    <div class="form__item">
+        <button class="form__btn" type="submit" [disabled]="colorForm.invalid">Invia!</button>
+    </div>
 
 </div>
