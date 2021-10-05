@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ColorsService } from 'src/app/modules/core/services/colors.service';
@@ -9,7 +9,7 @@ import { Color } from 'src/app/modules/shared/model/color';
   templateUrl: './add-or-edit.component.html',
   styleUrls: ['./add-or-edit.component.scss']
 })
-export class AddOrEditComponent implements OnInit {
+export class AddOrEditComponent implements OnInit, OnChanges {
   currentId: string = '';
   selectedColor: Color | undefined;
   colorForm : FormGroup = this.fb.group({});
@@ -24,6 +24,7 @@ export class AddOrEditComponent implements OnInit {
       this.currentId = paramMap.get('colorId') || '';
       if (this.currentId !== '') {
           this.colorService.getColor(+this.currentId).then((res: Color) => {
+            console.log("colore caricato", res);
             this.selectedColor = res;
           }).catch((error) => {
             this.selectedColor = undefined;
@@ -32,15 +33,24 @@ export class AddOrEditComponent implements OnInit {
         //new color
         this.selectedColor = this.generateNewColorStub(); //Collisions
       }
-      this.colorForm.addControl("id", this.fb.control(this.selectedColor?.id, [Validators.required, Validators.min(1)]));
-      this.colorForm.addControl("name", this.fb.control(this.selectedColor?.name, [Validators.required, Validators.minLength(1)]));
-      this.colorForm.addControl("year", this.fb.control(this.selectedColor?.year, [Validators.min(1970)]));
-      this.colorForm.addControl("color", this.fb.control(this.selectedColor?.color, [Validators.required, Validators.pattern("^#([a-fA-F0-9]{6})$")]));
-      this.colorForm.addControl("pantone_value", this.fb.control(this.selectedColor?.pantone_value, [Validators.required, Validators.pattern("^([0-9]{2}-[0-9]{4})$")]));
-      this.colorForm.addControl("loaded", this.fb.control(this.selectedColor?.loaded, []));
-      this.colorForm.addControl("edited_by", this.fb.control(this.selectedColor?.edited_by, []));
-      this.colorForm.addControl("check", this.fb.control(false, [Validators.requiredTrue]));
     })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.selectedColor.firstChange) {
+      this.createForm();
+    }
+  }
+
+  createForm() {
+    this.colorForm.addControl("id", this.fb.control(this.selectedColor?.id, [Validators.required, Validators.min(1)]));
+    this.colorForm.addControl("name", this.fb.control('', [Validators.required, Validators.minLength(1)]));
+    this.colorForm.addControl("year", this.fb.control('', [Validators.min(1970)]));
+    this.colorForm.addControl("color", this.fb.control('', [Validators.required, Validators.pattern("^#([a-fA-F0-9]{6})$")]));
+    this.colorForm.addControl("pantone_value", this.fb.control('', [Validators.required, Validators.pattern("^([0-9]{2}-[0-9]{4})$")]));
+    this.colorForm.addControl("loaded", this.fb.control('', []));
+    this.colorForm.addControl("edited_by", this.fb.control('', []));
+    this.colorForm.addControl("check", this.fb.control(false, [Validators.requiredTrue]));
   }
 
   private generateNewColorStub(): Color {
