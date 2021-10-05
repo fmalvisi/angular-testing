@@ -99,6 +99,20 @@
   .form__btn:active {
     background: #0fa942;
   }
+  .form__btn:disabled {
+    background: #bbbbbb;
+    border-color: #555;
+  }
+
+  .valid {
+      color: #0fa942;
+      border-color: #0fa942;
+  }
+
+  .errmsg {
+    color: #d50000;
+    border-color: #d50000;
+  }
 
   .form__chk {
       accent-color: #0fa942;

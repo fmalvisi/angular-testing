@@ -13,13 +13,13 @@ export class AddOrEditComponent implements OnInit {
   currentId: string = '';
   selectedColor: Color | undefined;
   colorForm : FormGroup = this.fb.group({
-    id: [''],
-    name: [''],
-    year: [''],
-    color: [''],
-    pantone_value: [''],
-    loaded: [''],
-    edited_by: [''],
+    id: [{value: '', disabled: true}, [Validators.required, Validators.min(1)]],
+    name: ['', [Validators.required, Validators.minLength(1)]],
+    year: ['', [Validators.maxLength(4), Validators.min(1970)]],
+    color: ['', [Validators.required, Validators.pattern("^#([a-fA-F0-9]{6})$")]],
+    pantone_value: ['', [Validators.required, Validators.pattern("^([0-9]{2}-[0-9]{4})$")]],
+    loaded: [{value: '', disabled: true}, []],
+    edited_by: [{value: '', disabled: true}, []],
     check: [false, [Validators.requiredTrue]]
   });
 
@@ -48,20 +48,7 @@ export class AddOrEditComponent implements OnInit {
   }
 
   createForm() {
-    this.colorForm.removeControl("id");
-    this.colorForm.removeControl("name");
-    this.colorForm.removeControl("year");
-    this.colorForm.removeControl("color");
-    this.colorForm.removeControl("pantone_value");
-    this.colorForm.removeControl("loaded");
-    this.colorForm.removeControl("edited_by");
-    this.colorForm.setControl("id", this.fb.control({value: '', disabled: true}, [Validators.required, Validators.min(1)]));
-    this.colorForm.setControl("name", this.fb.control('', [Validators.required, Validators.minLength(1)]));
-    this.colorForm.setControl("year", this.fb.control('', [Validators.min(1970)]));
-    this.colorForm.setControl("color", this.fb.control('', [Validators.required, Validators.pattern("^#([a-fA-F0-9]{6})$")]));
-    this.colorForm.setControl("pantone_value", this.fb.control('', [Validators.required, Validators.pattern("^([0-9]{2}-[0-9]{4})$")]));
-    this.colorForm.setControl("loaded", this.fb.control({value: '', disabled: true}, []));
-    this.colorForm.setControl("edited_by", this.fb.control({value: '', disabled: true}, []));
+
     this.colorForm.patchValue({
       id: this.selectedColor?.id,
       name: this.selectedColor?.name,
@@ -76,10 +63,10 @@ export class AddOrEditComponent implements OnInit {
   private generateNewColorStub(): Color {
     const now = new Date();
     return {
-      id: (Math.random() * (999 - 100) + 100),
+      id: Math.ceil((Math.random() * (999 - 100) + 100)),
       color: "#000000",
       name: "inserisci nome qui",
-      pantone_value: "xxx-xxxxx",
+      pantone_value: "00-0000",
       year: now.getFullYear(),
       loaded: now.toISOString(),
       edited_by: "You"
