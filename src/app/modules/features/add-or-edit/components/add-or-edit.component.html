@@ -23,7 +23,7 @@
     </div>
     <div class="form__item">
         <label for="color" class="form__label">Colore esadecimale: </label>
-        <input id="color" type="text" formControlName="color" [(ngModel)]="selectedColor!.color" class="form__input form__input--small" [ngClass]="{'errmsg': !colorForm.controls['color'].valid && !colorForm.controls['color'].pristine, 'valid': colorForm.controls['color'].valid && colorForm.controls['color'].touched }">
+        <input rgbDirective [hexvalue]="selectedColor!.color" id="color" type="text" formControlName="color" [(ngModel)]="selectedColor!.color" class="form__input form__input--small" [ngClass]="{'errmsg': !colorForm.controls['color'].valid && !colorForm.controls['color'].pristine, 'valid': colorForm.controls['color'].valid && colorForm.controls['color'].touched }">
         <span class="form__error" *ngIf="colorForm.controls.color.invalid">Colore non valido, deve essere nel formato #XXXXXX</span>
     </div>
     <div class="form__item">
