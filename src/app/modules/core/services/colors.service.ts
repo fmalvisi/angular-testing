@@ -70,7 +70,7 @@ export class ColorsService {
     console.log("arrivato colore", newColor)
     if (!!newColor && !!newColor.id) {
       console.log("chiamato postColor con id: ", newColor.id);
-      this.http.post<Color>(this.baseURL+"/"+newColor.id, newColor).toPromise().then(
+      this.http.post<any>(this.baseURL, newColor).toPromise().then(
         res => {
           console.log("postColor response: ", res);
         },
