@@ -13,7 +13,7 @@
                 <div class="details-back">Nome: <div class="details">{{color.name}}</div></div>
                 <div class="details-back">Valore Esadecimale: <div class="details">{{color.color}}</div></div>
                 <div class="details-back">Anno: <div class="details">{{color.year}}</div></div>
-                <div class="details-back">Data caricamento: <div class="details">{{color.loaded}}</div></div>
+                <div class="details-back">Data caricamento: <div class="details"> {{ [color.loaded] | dateDiff }}</div></div>
                 <button (click)="editColor()">Modifica Colore</button>
             </div>
         </div>

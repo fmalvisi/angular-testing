@@ -25,7 +25,9 @@ export class ColorsService {
 
         } else {
           for (let currentColor of res) {
-            currentColor.loaded = new Date().toISOString();
+            if (!currentColor.loaded) {
+              currentColor.loaded = new Date().toISOString();
+            }
             this.fetchedColors.push(currentColor);
           }
         }
