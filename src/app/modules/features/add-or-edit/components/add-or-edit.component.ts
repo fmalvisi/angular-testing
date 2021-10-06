@@ -80,7 +80,11 @@ export class AddOrEditComponent implements OnInit {
 
   submit() {
     console.log("submit called", this.selectedColor);
-    this.colorService.editOrAddColor(this.selectedColor!);
+    if (this.currentId !== '') {
+      this.colorService.editColor(this.selectedColor!);
+    } else {
+      this.colorService.addColor(this.selectedColor!);
+    }
     this.goBack();
   }
 

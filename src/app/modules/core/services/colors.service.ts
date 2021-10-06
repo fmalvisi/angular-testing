@@ -51,27 +51,35 @@ export class ColorsService {
     return _promise;
   }
 
-  editOrAddColor(editedColor: Color) {
+  editColor(editedColor: Color) {
     console.log("arrivato colore", editedColor)
     if (!!editedColor && !!editedColor.id) {
-      console.log("colore definito");
-      let found = false;
-      this.fetchedColors.forEach((value, index) => {
-        console.log("cerco colore")
-        if (value.id === editedColor.id) {
-          console.log("colore trovato", value.id)
-          this.fetchedColors[index] = editedColor;
-          console.log("nuovo array colori", this.fetchedColors);
-          found = true;
-          return;
+      console.log("chiamato putColor con id: ", editedColor.id);
+      this.http.put<Color>(this.baseURL+"/"+editedColor.id, editedColor).toPromise().then(
+        res => {
+          console.log("putColor response: ", res);
+        },
+        error => {
+          console.log('putColor reject', error);
         }
-      });
-      if (!found) {
-        console.log("colore nuovo");
-        this.fetchedColors.push(editedColor);
-      }
+      );
     }
-    
-    console.log("nuovo array colori", this.fetchedColors);
   }
+
+  addColor(newColor: Color) {
+    console.log("arrivato colore", newColor)
+    if (!!newColor && !!newColor.id) {
+      console.log("chiamato postColor con id: ", newColor.id);
+      this.http.post<Color>(this.baseURL+"/"+newColor.id, newColor).toPromise().then(
+        res => {
+          console.log("postColor response: ", res);
+        },
+        error => {
+          console.log('postColor reject', error);
+        }
+      );
+    }
+  }
+
+  
 }
