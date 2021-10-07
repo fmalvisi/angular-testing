@@ -12,6 +12,7 @@ export class RgbDirective {
 
   @Input('hexvalue') set rgbDirective(hex: string) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    //there can only be one
     this.document.getElementById('rgbHint')?.remove();
     if(result){
       console.log("hey");
@@ -22,7 +23,8 @@ export class RgbDirective {
         const child = this.document.createElement('div');
         child.id = "rgbHint";
         child.innerHTML = rgbColor;
-        this.renderer.appendChild(this.elementRef.nativeElement, child);
+        this.renderer.addClass(this.elementRef.nativeElement, 'rgbDirective');
+        this.renderer.insertBefore(this.document.getElementsByClassName('rgbDirective')[0].parentNode, child, this.elementRef.nativeElement);
     } 
   }
 

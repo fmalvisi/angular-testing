@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ColorsService } from 'src/app/modules/core/services/colors.service';
@@ -7,7 +7,8 @@ import { Color } from 'src/app/modules/shared/model/color';
 @Component({
   selector: 'app-add-or-edit',
   templateUrl: './add-or-edit.component.html',
-  styleUrls: ['./add-or-edit.component.scss']
+  styleUrls: ['./add-or-edit.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddOrEditComponent implements OnInit {
   currentId: string = '';

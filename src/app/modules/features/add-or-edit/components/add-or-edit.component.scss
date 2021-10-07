@@ -84,8 +84,9 @@
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 600;
     font-size: 1.1em;
+    text-align: center;
+
     padding: 10px 16px;
-    margin: 10px 0;
   
     color: #ffffff;
     background: #14b64a;
@@ -116,5 +117,17 @@
 
   .form__chk {
       accent-color: #0fa942;
+  }
+
+  #rgbHint {
+      display: none;
+
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 0.75em;
+      text-align: center;
+  }
+      
+  .directive-wrapper:hover #rgbHint {
+      display: block;
   }
   
