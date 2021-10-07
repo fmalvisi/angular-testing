@@ -130,4 +130,15 @@
   .directive-wrapper:hover #rgbHint {
       display: block;
   }
+
+  .form__btn.goBack{
+      background-color: silver;
+      background-color: salmon;
+      border: 1px solid salmon;
+  }
+
+  .form__btn.goBack:hover {
+      color: white;
+      background-color: sienna;
+  }
   
