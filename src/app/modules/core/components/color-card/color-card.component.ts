@@ -8,12 +8,12 @@ import { Color } from 'src/app/modules/shared/model/color';
   styleUrls: ['./color-card.component.scss']
 })
 export class ColorCardComponent implements OnDestroy {
-  @Input() color!: Color;
+  @Input() color: Color | undefined;
 
   constructor(protected router: Router) { }
 
   editColor() {
-    this.router.navigate(['/color', this.color.id])
+    this.router.navigate(['/color', this.color?.id])
   }
 
   ngOnDestroy() {}
