@@ -13,18 +13,21 @@ export class RgbDirective {
   @Input('hexvalue') set rgbDirective(hex: string) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     //there can only be one
-    this.document.getElementById('rgbHint')?.remove();
+    const exists = this.document.getElementById('rgbHint');
     if(result){
-      console.log("hey");
-        var r= parseInt(result[1], 16);
-        var g= parseInt(result[2], 16);
-        var b= parseInt(result[3], 16);
-        const rgbColor = "rgb: " + r + ", " + g + ", " + b;
+      var r= parseInt(result[1], 16);
+      var g= parseInt(result[2], 16);
+      var b= parseInt(result[3], 16);
+      const rgbColor = "rgb: " + r + ", " + g + ", " + b;
+      if (exists) {
+        exists.innerHTML = rgbColor;
+      } else {
         const child = this.document.createElement('div');
         child.id = "rgbHint";
         child.innerHTML = rgbColor;
         this.renderer.addClass(this.elementRef.nativeElement, 'rgbDirective');
         this.renderer.insertBefore(this.document.getElementsByClassName('rgbDirective')[0].parentNode, child, this.elementRef.nativeElement);
+      }
     } 
   }
 
