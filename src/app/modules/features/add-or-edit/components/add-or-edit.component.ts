@@ -12,7 +12,7 @@ import { Color } from 'src/app/modules/shared/model/color';
 })
 export class AddOrEditComponent implements OnInit {
   currentId: string = '';
-  selectedColor: Color | undefined;
+  selectedColor: Color = this.generateNewColorStub();
   colorForm : FormGroup = this.fb.group({
     id: [{value: '', disabled: true}, [Validators.required, Validators.min(1)]],
     name: ['', [Validators.required, Validators.minLength(1)]],
@@ -23,6 +23,7 @@ export class AddOrEditComponent implements OnInit {
     edited_by: [{value: '', disabled: true}, []],
     check: [false, [Validators.requiredTrue]]
   });
+  dataLoaded = false;
 
   constructor(private route: ActivatedRoute,
     protected router: Router,
@@ -38,11 +39,10 @@ export class AddOrEditComponent implements OnInit {
             this.selectedColor = res;
             this.createForm();
           }).catch((error) => {
-            this.selectedColor = undefined;
+            alert("Errore in chiamata API, torno indietro");
+            this.goBack();
           })
       } else {
-        //new color
-        this.selectedColor = this.generateNewColorStub(); //Collisions
         this.createForm();
       }
     })
@@ -50,18 +50,19 @@ export class AddOrEditComponent implements OnInit {
 
   createForm() {
     this.colorForm.patchValue({
-      id: this.selectedColor?.id,
-      name: this.selectedColor?.name,
-      year: this.selectedColor?.year,
-      color: this.selectedColor?.color,
-      pantone_value: this.selectedColor?.pantone_value,
-      loaded: this.selectedColor?.loaded,
-      edited_by: this.selectedColor?.edited_by
+      id: this.selectedColor.id,
+      name: this.selectedColor.name,
+      year: this.selectedColor.year,
+      color: this.selectedColor.color,
+      pantone_value: this.selectedColor.pantone_value,
+      loaded: this.selectedColor.loaded,
+      edited_by: this.selectedColor.edited_by
     });
+    this.dataLoaded = true;
     this.colorForm.valueChanges.subscribe(form => {
       if (this.currentId !== '' && this.colorForm.dirty) {
-        this.selectedColor!.loaded = new Date().toISOString();
-        this.selectedColor!.edited_by = "You";
+        this.selectedColor.loaded = new Date().toISOString();
+        this.selectedColor.edited_by = "You";
       }
     });
   }

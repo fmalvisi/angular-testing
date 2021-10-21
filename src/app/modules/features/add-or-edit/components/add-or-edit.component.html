@@ -1,4 +1,4 @@
-<form class="form-container"  [formGroup]="colorForm" (ngSubmit)="submit()">
+<form *ngIf="dataLoaded" class="form-container"  [formGroup]="colorForm" (ngSubmit)="submit()">
     <div *ngIf="!!currentId; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
         <h1 class="form__title">Modifica questo colore!</h1>
@@ -9,37 +9,37 @@
 
     <div class="form__item">
         <label for="id" class="form__label">Id: </label>
-        <input id="id" type="text" formControlName="id" [(ngModel)]="selectedColor!.id" class="form__input form__input--small" [ngClass]="{'errmsg': !colorForm.controls['id'].valid && !colorForm.controls['id'].pristine, 'valid': colorForm.controls['id'].valid && colorForm.controls['id'].touched }">
+        <input id="id" type="text" formControlName="id" [(ngModel)]="selectedColor.id" class="form__input form__input--small" [ngClass]="{'errmsg': !colorForm.controls['id'].valid && !colorForm.controls['id'].pristine, 'valid': colorForm.controls['id'].valid && colorForm.controls['id'].touched }">
     </div>
     <div class="form__item">
         <label for="name" class="form__label">Nome: </label>
-        <input id="name" type="text" formControlName="name" [(ngModel)]="selectedColor!.name" class="form__input" [ngClass]="{'errmsg': !colorForm.controls['name'].valid && !colorForm.controls['name'].pristine, 'valid': colorForm.controls['name'].valid && colorForm.controls['name'].touched }">
+        <input id="name" type="text" formControlName="name" [(ngModel)]="selectedColor.name" class="form__input" [ngClass]="{'errmsg': !colorForm.controls['name'].valid && !colorForm.controls['name'].pristine, 'valid': colorForm.controls['name'].valid && colorForm.controls['name'].touched }">
         <span class="form__error" *ngIf="colorForm.controls.id.invalid">Id non valido</span>
     </div>
     <div class="form__item">
         <label for="year" class="form__label">Anno: </label>
-        <input id="year" type="text" formControlName="year" [(ngModel)]="selectedColor!.year" class="form__input form__input--small" [ngClass]="{'errmsg': !colorForm.controls['year'].valid && !colorForm.controls['year'].pristine, 'valid': colorForm.controls['year'].valid && colorForm.controls['year'].touched }">
+        <input id="year" type="text" formControlName="year" [(ngModel)]="selectedColor.year" class="form__input form__input--small" [ngClass]="{'errmsg': !colorForm.controls['year'].valid && !colorForm.controls['year'].pristine, 'valid': colorForm.controls['year'].valid && colorForm.controls['year'].touched }">
         <span class="form__error" *ngIf="colorForm.controls.year.invalid">Anno non valido</span>
     </div>
     <div class="form__item">
         <label for="color" class="form__label">Colore esadecimale: </label>
         <div class="directive-wrapper">
-            <input rgbDirective [hexvalue]="selectedColor!.color" id="color" type="text" formControlName="color" [(ngModel)]="selectedColor!.color" class="form__input form__input--small wrapped" [ngClass]="{'errmsg': !colorForm.controls['color'].valid && !colorForm.controls['color'].pristine, 'valid': colorForm.controls['color'].valid && colorForm.controls['color'].touched }">
+            <input rgbDirective [hexvalue]="selectedColor.color" id="color" type="text" formControlName="color" [(ngModel)]="selectedColor.color" class="form__input form__input--small wrapped" [ngClass]="{'errmsg': !colorForm.controls['color'].valid && !colorForm.controls['color'].pristine, 'valid': colorForm.controls['color'].valid && colorForm.controls['color'].touched }">
         </div>
         <span class="form__error" *ngIf="colorForm.controls.color.invalid">Colore non valido, deve essere nel formato #XXXXXX</span>
     </div>
     <div class="form__item">
         <label for="pantone_value" class="form__label">Nomenclatura Pantone&reg;: </label>
-        <input id="pantone_value" type="text" formControlName="pantone_value" [(ngModel)]="selectedColor!.pantone_value" class="form__input form__input--small" [ngClass]="{'errmsg': !colorForm.controls['pantone_value'].valid && !colorForm.controls['pantone_value'].pristine, 'valid': colorForm.controls['pantone_value'].valid && colorForm.controls['pantone_value'].touched }">
+        <input id="pantone_value" type="text" formControlName="pantone_value" [(ngModel)]="selectedColor.pantone_value" class="form__input form__input--small" [ngClass]="{'errmsg': !colorForm.controls['pantone_value'].valid && !colorForm.controls['pantone_value'].pristine, 'valid': colorForm.controls['pantone_value'].valid && colorForm.controls['pantone_value'].touched }">
         <span class="form__error" *ngIf="colorForm.controls.pantone_value.invalid">Nomenclatura Pantone non valida, deve essere nel formato XX-XXXX</span>
     </div>
     <div class="form__item">
         <label for="loaded" class="form__label">Ultimo Aggiornamento: </label>
-        <input id="loaded" type="text" formControlName="loaded" [(ngModel)]="selectedColor!.loaded" class="form__input">
+        <input id="loaded" type="text" formControlName="loaded" [(ngModel)]="selectedColor.loaded" class="form__input">
     </div>
     <div class="form__item">
         <label for="edited_by" class="form__label">Modificato da: </label>
-        <input id="edited_by" type="text" formControlName="edited_by" class="form__input form__input--small" [(ngModel)]="selectedColor!.edited_by">
+        <input id="edited_by" type="text" formControlName="edited_by" class="form__input form__input--small" [(ngModel)]="selectedColor.edited_by">
     </div>
     <div class="form__item">
         <label for="check" class="form__label">Sei Sicuro?</label>
