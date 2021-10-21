@@ -13,7 +13,9 @@ export class ColorCardComponent implements OnDestroy {
   constructor(protected router: Router) { }
 
   editColor() {
-    this.router.navigate(['/color', this.color?.id])
+    if (!!this.color) {
+      this.router.navigate(['/color', this.color.id]);
+    }
   }
 
   ngOnDestroy() {}
