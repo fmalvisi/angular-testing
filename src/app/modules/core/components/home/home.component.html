@@ -1,7 +1,7 @@
 <div class="title">Colori del giorno<span class="action" (click)="addColor()">Aggiungi un nuovo colore!</span></div>
 <carousel
 [height]="1000"
-[cellsToShow]="3"
+[cellsToShow]="elementsToDisplay()"
 [borderRadius]="10"
 [lightDOM]="true"
 [loop]="true">

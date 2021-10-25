@@ -23,4 +23,16 @@ export class HomeComponent {
   addColor() {
     this.router.navigate(["/color", '']);
   }
+
+  elementsToDisplay(): number {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth < 980) {
+      return 1;
+    } else if (windowWidth < 1280) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
 }
