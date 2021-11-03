@@ -1,0 +1,2 @@
+<button (click)="vote(true)"  [disabled]="didVote" [ngClass]="{'highlighted' : !!highlighted && received}">Mi Piace!</button>
+<button (click)="vote(false)" [disabled]="didVote" [ngClass]="{'highlighted' : !highlighted && received}">Non mi Piace.</button>

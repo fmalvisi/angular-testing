@@ -16,6 +16,7 @@
           <div class="details-back">Anno: <div class="details">{{color?.year}}</div></div>
           <div class="details-back">Data caricamento: <div class="details"> {{ [color?.loaded] | dateDiff }}</div></div>
           <button (click)="editColor()">Modifica Colore</button>
+          <app-vote-wrapper></app-vote-wrapper>
         </div>
       </div>
     </div>
