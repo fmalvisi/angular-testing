@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { VoteWorkerComponent } from './vote-worker.component';
 
 @Component({
@@ -10,16 +10,12 @@ export class VoteWrapperComponent {
   
   @ViewChild(VoteWorkerComponent) voteWorker!: VoteWorkerComponent;
   
-  liked = 0;
-  disliked = 0;
   voteObtained = false;
   constructor() { }
 
-  onVoted(agreed: boolean) {
-    agreed ? this.liked++ : this.disliked++;
+  onVoted(liked: boolean) {
     this.voteObtained = true;
-    this.voteWorker.highlight(agreed);
-    console.log("call from parent");
+    this.voteWorker.highlight(liked);
   }
 
 }
