@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import { Color } from '../../shared/model/color';
-import { map } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -53,29 +54,18 @@ export class ColorsService {
     return _promise;
   }
 
-  editColor(editedColor: Color) {
+  editColor(editedColor: Color): Observable<any> {
     console.log("arrivato colore", editedColor)
-    this.http.put<Color>(this.baseURL+"/"+editedColor.id, editedColor).toPromise().then(
-      res => {
-        console.log("putColor response: ", res);
-      },
-      error => {
-        console.log('putColor reject', error);
-      }
+    return this.http.put<Color>(this.baseURL+"/"+editedColor.id, editedColor).pipe(
+      tap( res => console.log("putColor response: ", res), error => console.log('putColor reject', error))
     );
   }
 
-  addColor(newColor: Color) {
+  addColor(newColor: Color): Observable<any> {
     console.log("arrivato colore", newColor);
-    this.http.post<any>(this.baseURL, newColor).toPromise().then(
-      res => {
-        console.log("postColor response: ", res);
-      },
-      error => {
-        console.log('postColor reject', error);
-      }
+    return this.http.post<any>(this.baseURL, newColor).pipe(
+      tap( res => console.log("postColor response: ", res), error => console.log('postColor reject', error))
     );
   }
 
-  
 }

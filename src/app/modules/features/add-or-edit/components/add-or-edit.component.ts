@@ -28,7 +28,7 @@ export class AddOrEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     protected router: Router,
     private colorService: ColorsService,
-    private fb: FormBuilder) { 
+    private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -83,11 +83,10 @@ export class AddOrEditComponent implements OnInit {
   submit() {
     console.log("submit called", this.selectedColor);
     if (this.currentId !== '') {
-      this.colorService.editColor(this.selectedColor!);
+      this.colorService.editColor(this.selectedColor!).subscribe(res => this.goBack());
     } else {
-      this.colorService.addColor(this.selectedColor!);
+      this.colorService.addColor(this.selectedColor!).subscribe(res => this.goBack());
     }
-    this.goBack();
   }
 
   goBack() {
