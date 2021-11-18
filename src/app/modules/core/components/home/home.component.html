@@ -1,11 +1,10 @@
 <div class="title">Colori del giorno<span class="action" (click)="addColor()">Aggiungi un nuovo colore!</span></div>
 <carousel
 [height]="1000"
-[cellsToShow]="3"
+[cellsToShow]="elementsToDisplay()"
 [borderRadius]="10"
 [lightDOM]="true"
 [loop]="true">
-    <app-color-card *ngFor="let colorCell of colorList" [color]=colorCell class="carousel-cell">
-    </app-color-card>
+    <app-color-card *ngFor="let colorCell of colorList" [color]=colorCell class="carousel-cell"></app-color-card>
 </carousel>
 <div id="disclaimer">Tutti i marchi usati appartengono ai relativi proprietari e vengono qui usati solo a scopo educativo.</div>

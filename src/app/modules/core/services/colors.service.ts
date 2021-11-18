@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import { Color } from '../../shared/model/color';
-import { map } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,9 @@ export class ColorsService {
 
         } else {
           for (let currentColor of res) {
-            currentColor.loaded = new Date().toISOString();
+            if (!currentColor.loaded) {
+              currentColor.loaded = new Date().toISOString();
+            }
             this.fetchedColors.push(currentColor);
           }
         }
@@ -34,7 +37,7 @@ export class ColorsService {
     ).toPromise();
   }
 
-  getColor(id: number) {
+  getColor(id: number): Promise<Color> {
     console.log("chiamato getColor con id: ", id);
     const _promise = new Promise<Color>((resolve, reject) => {
       this.http.get<Color>(this.baseURL+"/"+id).toPromise().then(
@@ -51,15 +54,18 @@ export class ColorsService {
     return _promise;
   }
 
-  editOrAddColor(editedColor: Color) {
-    if (!!editedColor && !!editedColor.id) {
-      for (let currentColor of this.fetchedColors) {
-        if (currentColor.id === editedColor.id) {
-          currentColor = editedColor //TODO TEST
-          return;
-        }
-      }
-      this.fetchedColors.push(editedColor);
-    }
+  editColor(editedColor: Color): Observable<any> {
+    console.log("arrivato colore", editedColor)
+    return this.http.put<Color>(this.baseURL+"/"+editedColor.id, editedColor).pipe(
+      tap( res => console.log("putColor response: ", res), error => console.log('putColor reject', error))
+    );
   }
+
+  addColor(newColor: Color): Observable<any> {
+    console.log("arrivato colore", newColor);
+    return this.http.post<any>(this.baseURL, newColor).pipe(
+      tap( res => console.log("postColor response: ", res), error => console.log('postColor reject', error))
+    );
+  }
+
 }

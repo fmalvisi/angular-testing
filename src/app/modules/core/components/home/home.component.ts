@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Color } from 'src/app/modules/shared/model/color';
 import { ColorsService } from '../../services/colors.service';
@@ -8,7 +8,7 @@ import { ColorsService } from '../../services/colors.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   colorList: Color[] = [];
 
   constructor(private colorsService: ColorsService,
@@ -20,10 +20,19 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
   addColor() {
     this.router.navigate(["/color", '']);
+  }
+
+  elementsToDisplay(): number {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth < 980) {
+      return 1;
+    } else if (windowWidth < 1280) {
+      return 2;
+    } else {
+      return 3;
+    }
   }
 }

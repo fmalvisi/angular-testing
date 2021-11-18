@@ -1,0 +1,6 @@
+<h3 *ngIf="!voteObtained">Ti piace questo colore?</h3>
+<h4 *ngIf="!!voteObtained">Hai già espresso il tuo parere.</h4>
+
+<app-vote-worker
+  (voted)="onVoted($event)">
+</app-vote-worker>
