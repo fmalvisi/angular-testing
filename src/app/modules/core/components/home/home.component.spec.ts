@@ -28,4 +28,28 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should navigate', () => {
+    spyOn(component['router'], "navigate");
+    component.addColor();
+    expect(component['router'].navigate).toHaveBeenCalledOnceWith(["/color", '']);
+
+  })
+  it ('should work with low resolution', () => {
+    spyOnProperty(window, "innerWidth").and.returnValue(760);
+    const cardsToDisplay = component.elementsToDisplay();
+    expect(cardsToDisplay).toEqual(1);
+  })
+  it ('should work with med resolution', () => {
+    spyOnProperty(window, "innerWidth").and.returnValue(1080);
+    const cardsToDisplay = component.elementsToDisplay();
+    expect(cardsToDisplay).toEqual(2);
+  })
+  it ('should work with med resolution', () => {
+    spyOnProperty(window, "innerWidth").and.callFake(() => {
+      return 1280;
+    });
+    const cardsToDisplay = component.elementsToDisplay();
+    expect(cardsToDisplay).toEqual(3);
+  })
 });

@@ -5,14 +5,60 @@ describe('DateDiffPipe', () => {
     const pipe = new DateDiffPipe();
     expect(pipe).toBeTruthy();
   });
-  it('should do un giorno in futuro', () => {
+  it('should trasform 3 settimane fa', ()=>{
     const pipe = new DateDiffPipe();
-    let res = pipe.transform(["2020-01-02", "2020-01-01"]);
-    expect(res).toEqual("tra un giorno");
+    let res = pipe.transform(["2020-12-12", "2021-01-02"]);
+    expect(res).toEqual('3 settimane fa');
   });
-  it('should return empty value', () => {
+  it('should trasform tra un giorno', ()=>{
+    const pipe = new DateDiffPipe();
+    let res = pipe.transform(["2020-12-12", "2020-12-11"]);
+    expect(res).toEqual('tra un giorno');
+  });
+  it('should trasform un giorno fa', ()=>{
+    const pipe = new DateDiffPipe();
+    let res = pipe.transform(["2020-12-12", "2020-12-13"]);
+    expect(res).toEqual('un giorno fa');
+  });
+  it('should trasform tra un giorno', ()=>{
+    const pipe = new DateDiffPipe();
+    let res = pipe.transform(["2020-12-13", "2020-12-11"]);
+    expect(res).toEqual('tra 2 giorni');
+  });
+
+  it('should trasform pochi istanti fa', ()=>{
+    const pipe = new DateDiffPipe();
+    let res = pipe.transform(["2020-12-13 20:20:20", "2020-12-13 20:21:00"]);
+    expect(res).toEqual('pochi istanti fa');
+  });
+
+  it('should handle incorrect input', ()=>{
+    const pipe = new DateDiffPipe();
+    let res = pipe.transform(["2020-12-13 20:20:20", "abc"]);
+    expect(res).toEqual("tra pochi istanti");
+  });
+  
+  it('should handle empty input', ()=>{
+    const pipe = new DateDiffPipe();
+    let res = pipe.transform([""]);
+    expect(res).toEqual("tra pochi istanti");
+  });
+
+  it('should handle empty array', ()=>{
+    const pipe = new DateDiffPipe();
+    let res = pipe.transform([undefined, null]);
+    expect(res).toEqual("tra pochi istanti");
+  });
+
+  it('should handle edge case', ()=>{
+    const pipe = new DateDiffPipe();
+    let res = pipe.transform(["2020-12-13 20:20:20", "2020-12-13 20:20:20"]);
+    expect(res).toEqual("tra pochi istanti");
+  });
+  
+  it('should trasform', ()=>{
     const pipe = new DateDiffPipe();
     let res = pipe.transform([]);
-    expect(res).toEqual("");
-  })
+    expect(res).toEqual('');
+  });
 });
