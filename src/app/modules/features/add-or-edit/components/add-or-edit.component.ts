@@ -39,7 +39,7 @@ export class AddOrEditComponent implements OnInit {
             this.selectedColor = res;
             this.createForm();
           }).catch((error) => {
-            alert("Errore in chiamata API, torno indietro");
+            window.alert("Errore in chiamata API, torno indietro");
             this.goBack();
           })
       } else {
