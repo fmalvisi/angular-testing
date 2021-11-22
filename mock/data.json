@@ -84,6 +84,15 @@
       "year": 2011,
       "color": "#D94F70",
       "pantone_value": "18-2120"
+    },
+    {
+      "id": 908,
+      "color": "#ffffff",
+      "name": "Nero",
+      "pantone_value": "00-0000",
+      "year": 2021,
+      "loaded": "2021-11-22T09:23:03.165Z",
+      "edited_by": "You"
     }
   ]
 }

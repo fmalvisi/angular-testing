@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { VoteWorkerComponent } from './vote-worker.component';
 
 import { VoteWrapperComponent } from './vote-wrapper.component';
 
@@ -8,7 +9,7 @@ describe('VoteWrapperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VoteWrapperComponent ]
+      declarations: [ VoteWrapperComponent, VoteWorkerComponent ]
     })
     .compileComponents();
   });
